@@ -1,0 +1,301 @@
+% <-- a percent symbol indicates a comment which does not affect the output of LaTeX
+% you can leave the preamble alone, from here ...
+\documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+\usepackage{enumitem,palatino}
+\usepackage[final]{graphicx}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=red,urlcolor=blue]{hyperref}
+
+\newtheorem{problem}{Problem}
+% ... to here
+
+% shortcuts for blackboard bold number sets (reals, integers, etc.)
+\newcommand{\II}{\ensuremath{\mathbb I}}
+\newcommand{\NN}{\ensuremath{\mathbb N}}
+\newcommand{\QQ}{\ensuremath{\mathbb Q}}
+\newcommand{\RR}{\ensuremath{\mathbb R}}
+\newcommand{\ZZ}{\ensuremath{\mathbb Z}}
+
+\newcommand{\eps}{\ensuremath{\epsilon}}
+\newcommand{\ds}{\displaystyle}
+
+% feel free to add more shortcuts here
+
+
+\begin{document}
+% replace with your name, but otherwise leave this header alone, from here ...
+\small
+\noindent \textsc{Math F307: Homework Assignment 1} \hfill Christopher Munoz
+
+\normalsize
+\bigskip
+% ... to here
+\section*{Section 1.1}
+\setcounter{problem}{3}
+\begin{problem}
+Give the value of each of the following.
+\begin{enumerate}[label=(\alph*)]
+    \item $\lceil 0.763 \rceil$
+    \item $2\lceil 0.6 \rceil - \lceil 1.2 \rceil$
+    \item $\lceil 1.1 \rceil + \lceil 3.3 \rceil$
+    \item $\lfloor \sqrt{3} \rfloor - \lfloor \sqrt{3} \rfloor$ 
+    \item $\lceil -73 \rceil - \lfloor -73 \rfloor$ 
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \item 
+      $ \lceil 0.763 \rceil = (1) = 1 $
+    \item 
+      $2\lceil 0.6 \rceil - \lceil 1.2 \rceil = 2(1) - (2) = 0$
+    \item
+      $\lceil 1.1 \rceil + \lceil 3.3 \rceil = (2) + (4) = 6$
+
+    \item 
+      $\lfloor \sqrt{3} \rfloor - \lfloor \sqrt{3} \rfloor = (2) - (1) = 0$ 
+    \item
+      $\lceil -73 \rceil - \lfloor -73 \rfloor = (-73) - (-73) = 0$ 
+
+\end{enumerate}
+\end{proof}
+
+
+\setcounter{problem}{7}
+\begin{problem}
+How many multiples of 10 are there between the following pairs of numbers?
+\begin{enumerate}[label=(\alph*)]
+    \item 1 and 80
+    \item 0 and 100
+    \item 9 and 2967
+    \item $-6$ and 34
+    \item $10^4$ and $10^5$
+    \item $-600$ and 3400
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+  (Assuming inclusive)
+\begin{enumerate}[label=(\alph*)]
+    \item 
+      $8$
+    \item 
+      $\lfloor \frac{n}{k} \rfloor - \lfloor \frac{m-1}{k} \rfloor = \lfloor \frac{100}{10} \rfloor - \lfloor \frac{-1}{10} \rfloor = 11$
+    \item 
+      $\lfloor \frac{2967}{10} \rfloor - \lfloor \frac{8}{10} \rfloor = 296$
+    \item 
+      $\lfloor \frac{34}{10} \rfloor - \lfloor \frac{-7}{10} \rfloor = 4$
+    \item 
+      $\lfloor \frac{10,000}{10} \rfloor - \lfloor \frac{99,999}{10} \rfloor = 9001$
+    \item 
+      $\lfloor \frac{3400}{10} \rfloor - \lfloor \frac{-600}{10} \rfloor = 401$
+\end{enumerate}
+\end{proof}tw+
+
+\setcounter{problem}{17}
+\begin{problem}
+\begin{enumerate}[label=(\alph*)] 
+    \item What does Fact 4 say for $k = 1$? Is this statement obvious?
+    \item What does Fact 4 say for $k > n$? Is this statement obvious?
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \item That $\lfloor n/1 \rfloor = n$ for all $n \in \ZZ$. Obvious, every positive integer is a multiple of 1 and everyone naturally knows there are $n$ numbers between $1$ and $n$. 
+    \item For $ k > n$, $\lfloor n/k \rfloor = 0$, Obvious, follows from the fact that if $k > n$ then $0 \leq n/k < 1$, the floor of this range is $0$ always.
+\end{enumerate}
+\end{proof}
+
+\setcounter{problem}{18}
+\begin{problem}
+\begin{enumerate}[label=(\alph*)]
+    \item Give a specific example of numbers $x$ and $y$ for which $\lfloor x \rfloor + \lfloor y \rfloor < \lfloor x + y \rfloor$.
+    
+    \item Give a specific example of numbers $x$ and $y$ for which $\lfloor x \rfloor + \lfloor y \rfloor = \lfloor x + y \rfloor$.
+    
+    \item Give a convincing argument that $\lfloor x \rfloor + \lfloor y \rfloor \leq \lfloor x + y \rfloor$ for every pair of numbers $x$ and $y$. 
+    
+    \textit{Suggestion: Use the fact that $\lfloor x + y \rfloor$ is the largest integer less than or equal to $x + y$.}
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \item Let $x = y = 1.5$, then  $\lfloor x \rfloor + \lfloor y \rfloor < \lfloor x + y \rfloor =  \lfloor 1.5 \rfloor + \lfloor 1.5 \rfloor < \lfloor 1.5 + 1.5 \rfloor = 2 < 3$.
+    \item Let $x = y = 1$, then $\lfloor x \rfloor + \lfloor y \rfloor = \lfloor x + y \rfloor = \lfloor 1 \rfloor + \lfloor 1 \rfloor = \lfloor 1 + 1 \rfloor = 2$.
+    \item Proof: Let $x, y \in \RR$. From the definition of the floor function we have $\lfloor x \rfloor \leq x$ and $\lfloor y \rfloor \leq y$. Adding these two inequalities together gives
+      $$\lfloor x \rfloor + \lfloor y \rfloor \leq x + y.$$
+      Note that $\lfloor x \rfloor + \lfloor y \rfloor$ is an integer (since it's the sum of two integers). Given that $\lfloor x + y \rfloor$ is the largest integer less than or equal to $x + y$, we have 
+      $$\lfloor x + y \rfloor \leq x + y.$$
+      Since $\lfloor x \rfloor + \lfloor y \rfloor$ is an integer satisfying $\lfloor x \rfloor + \lfloor y \rfloor \leq x + y$, and $\lfloor x + y \rfloor$ is the \emph{largest} such integer, we must have
+     $$\lfloor x \rfloor + \lfloor y \rfloor \leq \lfloor x + y \rfloor.$$
+ \end{enumerate}
+\end{proof}
+
+\section*{Section 1.2}
+
+\setcounter{problem}{1}
+\begin{problem}
+True or False. Explain briefly.
+\begin{enumerate}[label=(\alph*)]
+    \item $n \mid 1$ for all positive integers $n$.
+    
+    \item $n \mid n$ for all positive integers $n$.
+    
+    \item $n \mid n^2$ for all positive integers $n$.
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} For the statement $n \mid 1$ (equivalently $1 = nk$) to hold, there would need to be an integer $k$ such that $1 = nk$. By the definition of divisibility, $k$ must be an integer. For $n = 2$, we would need $k = 1/2$, which is not an integer. In fact, only $n = 1$ satisfies this (with $k = 1$). Therefore, the statement is false for all positive integers $n > 1$.
+  \item \textbf{True.} $n \mid n$ is true for all positive integers $n$. This is equivalent to $n = nk$ for some integer $k$. Taking $k = 1$ gives $n = n \cdot 1$, which is always true.
+  \item \textbf{True.} $n \mid n^2$ for all positive integers $n$ is true. Observe that if we let $k = n$ in the equation $n^2 = nk$, we have $n^2 = n \cdot n$, which is always true.
+\end{enumerate}
+\end{proof}
+
+\setcounter{problem}{13}
+\begin{problem}
+Suppose that $m$ and $n$ are integers that are multiples of $d$, say $m = ad$ and $n = bd$.
+\begin{enumerate}[label=(\alph*)]
+    \item Explain why $d \mid lm$ for every integer $l$.
+    
+    \item Show that $m + n$ and $m - n$ are multiples of $d$.
+    
+    \item Must $d$ divide $17m - 72n$? Explain.
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+  \item Since $ m = ad$, that means $lm = l(ad) = (la)d$. By definition of divisiblity this means $d \mid lm$.
+    \item Since $m = ad$ and $n = bd$, it follows that $m + n = ad + bd = (a+b)d$. By definition of divisibility this means $d \mid m + n$. Similarly
+      $m - n = ad - bd = (a-b)d$ so $d \mid m - n$.
+    \item Yes, because $17m - 72n = 17(ad) - 72(bd) = 17ad-72bd = (17a - 72b)d$. This means $d \mid 17m - 72n$ by definition.
+
+\end{enumerate}
+\end{proof}
+
+
+\setcounter{problem}{15}
+\begin{problem}
+\begin{enumerate}[label=(\alph*)]
+    \setcounter{enumi}{1}
+    \item List the positive integers less than 36 that are relatively prime to 36.
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+A positive integer $n$ is relatively prime to $36$ if and only if $\gcd(n,36)=1$ holds which means $n$ shares no prime factors with $36$.
+Here is our list of positive integers less than $36$ that have this property:
+$$1,5,7,11,13,17,19,23,25,29,31,35$$
+\end{proof}
+
+\section*{Section 1.3}
+
+\setcounter{problem}{1}
+\begin{problem}
+List the elements in the following sets.
+\begin{enumerate}[label=(\alph*)]
+    \item $\{1/n : n = 1, 2, 3, 4\}$
+    
+    \item $\{n^2 - n : n = 0, 1, 2, 3, 4\}$
+    
+    \item $\{1/n^2 : n \in \mathbb{P}, \text{ $n$ is even and } n < 11\}$
+    
+    \item $\{2 + (-1)^n : n \in \NN\}$
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+  \item  $\{1/n : n = 1, 2, 3, 4\} = \{1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}\}$
+
+    
+  \item  $\{n^2 - n : n = 0, 1, 2, 3, 4\} = \{0, 1, 2, 6, 12\}$
+
+    
+  \item  $\{1/n^2 : n \in \mathbb{P}, \text{ $n$ is even and } n < 11\} = \{\frac{1}{4}\}$ ($n = 2$ is only prime even)
+
+
+    
+  \item $\{2 + (-1)^n : n \in \NN\} = \{1 ,3 \}$ 
+
+\end{enumerate}
+\end{proof}
+
+\setcounter{problem}{5}
+\begin{problem}
+Repeat Exercise 4 for the following sets.
+\begin{enumerate}[label=(\alph*)]
+    \item $\{n \in \NN : n \mid 12\}$
+    
+    \item $\{n \in \NN : n^2 + 1 = 0\}$
+    
+    \item $\{n \in \ZZ : \lfloor \frac{n}{3} \rfloor = 8\}$
+    
+    \item $\{n \in \NN : \lceil \frac{n}{2} \rceil = 8\}$
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+  \item  $\{n \in \NN : n \mid 12\} = \{1, 2, 3, 4, 6, 12\}$ 
+    \item $\{n \in \NN : n^2 + 1 = 0\} = \emptyset$ 
+    \item   $\{n \in \ZZ : \lfloor \frac{n}{3} \rfloor = 8\} = \{24, 25, 26\}$
+    \item  $\{n \in \NN : \lceil \frac{n}{2} \rceil = 8\} = \{15, 16\}$
+
+
+\end{enumerate}
+\end{proof}
+
+\setcounter{problem}{7}
+\begin{problem}
+How many elements are there in the following sets? Write $\infty$ if the set is infinite.
+\begin{enumerate}[label=(\alph*)]
+    \item $\{n \in \NN : n^2 = 2\}$
+    
+    \item $\{n \in \ZZ : 0 \leq n \leq 73\}$
+    
+    \item $\{n \in \ZZ : 5 \leq |n| \leq 73\}$
+    
+    \item $\{n \in \ZZ : 5 < n < 73\}$
+    
+    \item $\{n \in \ZZ : \text{$n$ is even and } |n| \leq 73\}$
+    
+    \item $\{x \in \QQ : 0 \leq x \leq 73\}$
+    
+    \item $\{x \in \QQ : x^2 = 2\}$
+    
+    \item $\{x \in \RR : x^2 = 2\}$
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \item  Cardinality of 0    
+    \item  Cardinality of 74
+    \item  Cardinality of 2(73 - 5) = 136
+    \item  Cardinality of 73-5 = 68
+    \item  Cardinality of $\lfloor \frac{73}{2} \rfloor - \lfloor \frac{-73}{2} \rfloor$ = 73
+    \item Cardinality of $\infty$, specifically $\aleph_0$ (countably infinite). 
+    \item Cardinality of 0 
+    \item Cardinality of 2
+
+\end{enumerate}
+\end{proof}
+
+
+
+\end{document}
