@@ -25,6 +25,15 @@ variable {α : Type*}
 variable (s t u : Set α)
 open Set
 
+--Basic inclusion:
+
+theorem inc_0 (x : U) (A : Set U) (h : x ∈ A) : x ∈ A := by
+  exact h
+
+theorem incsub_0 (x : U) (A B : Set U) (h1 : A ⊆ B) (h2 : x ∈ A) : x ∈ B := by
+  exact h1 h2
+
+
 -- Below are 4 ways of proving the exact same theorem --
 
 theorem subsetcap (h : s ⊆ t) : s ∩ u ⊆ t ∩ u := by
