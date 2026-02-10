@@ -25,15 +25,6 @@ variable {α : Type*}
 variable (s t u : Set α)
 open Set
 
---Basic inclusion:
-
-theorem inc_0 (x : U) (A : Set U) (h : x ∈ A) : x ∈ A := by
-  exact h
-
-theorem incsub_0 (x : U) (A B : Set U) (h1 : A ⊆ B) (h2 : x ∈ A) : x ∈ B := by
-  exact h1 h2
-
-
 -- Below are 4 ways of proving the exact same theorem --
 
 theorem subsetcap (h : s ⊆ t) : s ∩ u ⊆ t ∩ u := by
@@ -80,5 +71,44 @@ example : s ∩ (t ∪ u) ⊆ s ∩ t ∪ s ∩ u := by
   · right
     show x ∈ s ∩ u
     exact ⟨xs, xu⟩ 
+
+example : s ∩ (t ∪ u) ⊆ s ∩ t ∪ s ∩ u := by 
+  rintro x ⟨xs, xt | xu⟩ --This ended up creating two cases
+  · left
+    exact ⟨xs, xt⟩ 
+  · right
+    exact ⟨xs, xu⟩ 
+
+theorem rev_examp : s ∩ t ∪ s ∩ u ⊆ s ∩ (t ∪ u) := by
+  simp only [subset_def]
+  intro x hx 
+  rw [inter_def, inter_def, union_def] at hx
+  rcases hx with h1 | h2
+    | inl => _
+    | inr => _
+    sorry
+
+theorem trans1 (x : U) (A B C : Set U) (h1 : A ⊆ B) (h2 : B ⊆ C) (h3 : x ∈ A) : x ∈ C := by
+ have h4 : x ∈ B := h1 h3   --Proof that x ∈ B
+ exact h2 h4                --x ∈ C because B ⊆ C and x ∈ B
+
+theorem imp {x : U} {A B C : Set U} (h1 : A ⊆ B) (h2 : x ∈ B → x ∈ C) : x ∈ A → x ∈ C := by
+ intro h3
+ have h4 : x ∈ B := h1 h3
+ exact h2 h4
+
+
+theorem subset.reflex (A : Set U) : A ⊆ A := by
+  intro x
+  intro h
+  exact h
+
+theorem subset.trans {A B C : Set U} (h1 : A ⊆ B) (h2 : B ⊆ C) : A ⊆ C := by
+  intro x
+  intro h
+  have h3 : x ∈ B := h1 h
+  exact h2 h3
+
+
 
 

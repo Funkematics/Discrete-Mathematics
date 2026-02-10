@@ -1,0 +1,602 @@
+% <-- a percent symbol indicates a comment which does not affect the output of LaTeX
+% you can leave the preamble alone, from here ...
+\documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+\usepackage{enumitem,palatino}
+\usepackage[final]{graphicx}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=red,urlcolor=blue]{hyperref}
+
+\newtheorem{problem}{Problem}
+% ... to here
+
+% shortcuts for blackboard bold number sets (reals, integers, etc.)
+\newcommand{\II}{\ensuremath{\mathbb I}}
+\newcommand{\NN}{\ensuremath{\mathbb N}}
+\newcommand{\QQ}{\ensuremath{\mathbb Q}}
+\newcommand{\RR}{\ensuremath{\mathbb R}}
+\newcommand{\ZZ}{\ensuremath{\mathbb Z}}
+\newcommand{\PP}{\ensuremath{\mathbb{P}}}
+
+\newcommand{\eps}{\ensuremath{\epsilon}}
+\newcommand{\ds}{\displaystyle}
+
+% feel free to add more shortcuts here
+
+
+\begin{document}
+% replace with your name, but otherwise leave this header alone, from here ...
+\small
+\noindent \textsc{Math F307: Homework Assignment 3} \hfill Christopher Munoz
+
+\normalsize
+\bigskip
+% ... to here
+
+\section*{Section 1.7}
+
+\setcounter{problem}{3}
+\begin{problem}
+Consider the following functions from $\NN$ into $\NN$:
+
+$I_\NN(n) = n$, $f(n) = 3n$, $g(n) = n + (-1)^n$, $h(n) = \min\{n, 100\}$, $k(n) = \max\{0, n - 5\}$.
+
+\begin{enumerate}[label=(\alph*)]
+    \item Which of these functions are one-to-one?
+    
+    \item Which of these functions map $\NN$ onto $\NN$?
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \item $I_\NN$: One-to-one since if $I_\NN(a) = I_\NN(b)$, then $a = b$.
+
+    $f$: One-to-one since if $3a = 3b$, then $a = b$.
+
+    $g$: One-to-one. For odd $n$, $g(n) = n - 1$. For even $n$, $g(n) = n + 1$. If $g(a) = g(b)$, either both are odd or both are even (otherwise the outputs have different parities), and in either case $a = b$.
+
+    $h$: Not one-to-one. $h(100) = h(101) = 100$ but $100 \neq 101$.
+
+    $k$: Not one-to-one. $k(0) = k(5) = 0$ but $0 \neq 5$.
+
+    \item $I_\NN$: Onto since for any $m \in \NN$, $I_\NN(m) = m$.
+
+    $f$: Not onto. There is no $n$ such that $f(n) = 1$.
+
+    $g$: Onto. The range is $\{1, 0, 3, 2, 5, 4, \ldots\}$ which covers all of $\NN$.
+
+    $h$: Not onto. There is no $n$ such that $h(n) = 101$.
+
+    $k$: Onto. For any $m \in \NN$, $k(m + 5) = m$.
+\end{enumerate}
+\end{proof}
+
+\setcounter{problem}{4}
+\begin{problem}
+Here are two "shift functions" mapping $\NN$ into $\NN$:
+
+$f(n) = n + 1$ and $g(n) = \max\{0, n - 1\}$ for $n \in \NN$.
+
+\begin{enumerate}[label=(\alph*)]
+    \setcounter{enumi}{2}
+    \item Show that $f$ is one-to-one but does not map $\NN$ onto $\NN$.
+    
+    \item Show that $g$ maps $\NN$ onto $\NN$ but is not one-to-one.
+    
+    \item Show that $g \circ f(n) = n$ for all $n$, but that $f \circ g(n) = n$ does not hold for all $n$.
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \setcounter{enumi}{2}
+    \item $f$ is one-to-one: If $f(a) = f(b)$, then $a + 1 = b + 1$, so $a = b$.
+
+    $f$ is not onto: The range of $f$ is $\{1, 2, 3, \ldots\}$, so $0$ is not in the range.
+
+    \item $g$ is onto: For any $m \in \NN$, take $n = m + 1$. Then $g(m + 1) = \max\{0, m\} = m$.
+
+    $g$ is not one-to-one: $g(0) = g(1) = 0$ but $0 \neq 1$.
+
+    \item For any $n \in \NN$, $g(f(n)) = g(n + 1) = \max\{0, n\} = n$.
+
+    But $f(g(0)) = f(0) = 1 \neq 0$, so $f \circ g$ is not the identity.
+\end{enumerate}
+\end{proof}
+
+\setcounter{problem}{5}
+\begin{problem}
+Let $\Sigma = \{a, b, c\}$ and let $\Sigma^*$ be the set of all words $w$ using letters from $\Sigma$. Define $L(w) = \text{length}(w)$ for all $w \in \Sigma^*$.
+
+\begin{enumerate}[label=(\alph*)]
+    \setcounter{enumi}{1}
+    \item Is $L$ a one-to-one function? Explain.
+    
+    \item The function $L$ maps $\Sigma^*$ into $\NN$. Does $L$ map $\Sigma^*$ onto $\NN$? Explain.
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \setcounter{enumi}{1}
+    \item No, $L$ is not one-to-one. Many words have the same length, e.g., $L(ab) = L(ca) = 2$ but $ab \neq ca$.
+
+    \item Yes, $L$ is onto. For $n = 0$, take the empty word $\lambda$. For $n > 0$, take the word $aa\ldots a$ ($n$ times). Then $L(w) = n$ for any $n \in \NN$.
+\end{enumerate}
+\end{proof}
+
+\setcounter{problem}{12}
+\begin{problem}
+Let $f: S \to T$ and $g: T \to U$ be one-to-one functions. Show that the function $g \circ f: S \to U$ is one-to-one.
+\end{problem}
+
+\begin{proof}
+Suppose $(g \circ f)(a) = (g \circ f)(b)$. Then $g(f(a)) = g(f(b))$. Since $g$ is one-to-one, $f(a) = f(b)$. Since $f$ is one-to-one, $a = b$. Therefore $g \circ f$ is one-to-one.
+\end{proof}
+
+\section*{Section 2.1}
+
+\setcounter{problem}{1}
+\begin{problem}
+Let $p$, $q$, and $r$ be the following propositions:
+
+$p = $ "it is raining,"
+
+$q = $ "the sun is shining,"
+
+$r = $ "there are clouds in the sky."
+
+Translate the following into English sentences.
+
+\begin{enumerate}[label=(\alph*)]
+    \item $(p \land q) \to r$
+    
+    \item $\neg p \leftrightarrow (q \lor r)$
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \item $(p \land q) \to r$
+    
+    "If it is raining and the sun is shining, then there are clouds in the sky."
+    
+    \item $\neg p \leftrightarrow (q \lor r)$
+    
+    "It is not raining if and only if the sun is shining or there are clouds in the sky."
+\end{enumerate}
+\end{proof}
+
+\setcounter{problem}{3}
+\begin{problem}
+Which of the following are propositions? Give the truth values of the propositions.
+
+\begin{enumerate}[label=(\alph*)]
+    \item $x^2 = x$ for all $x \in \RR$.
+    
+    \item $x^2 = x$ for some $x \in \RR$.
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \item This is a proposition with truth value \textbf{False}. When $x = 2$, we have $x^2 = 4 \neq 2$.
+
+    \item This is a proposition with truth value \textbf{True}. For $x = 0$, we have $0^2 = 0$.
+\end{enumerate}
+\end{proof}
+
+\setcounter{problem}{5}
+\begin{problem}
+Give the converses of the following propositions.
+
+\begin{enumerate}[label=(\alph*)]
+    \setcounter{enumi}{1}
+    \item If I am smart, then I am rich.
+    
+    \item If $x^2 = x$, then $x = 0$ or $x = 1$.
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+
+The converse of "$p \to q$" is "$q \to p$".
+
+\begin{enumerate}[label=(\alph*)]
+    \setcounter{enumi}{1}
+    \item \textbf{Converse:} If I am rich, then I am smart.
+    
+    \item \textbf{Converse:} If $x = 0$ or $x = 1$, then $x^2 = x$.
+\end{enumerate}
+\end{proof}
+
+\setcounter{problem}{6}
+\begin{problem}
+Give the contrapositives of the propositions in Exercise 6.
+
+\begin{enumerate}[label=(\alph*)]
+    \setcounter{enumi}{1}
+    \item If I am smart, then I am rich.
+    
+    \item If $x^2 = x$, then $x = 0$ or $x = 1$.
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+
+The contrapositive of "$p \to q$" is "$\neg q \to \neg p$".
+
+\begin{enumerate}[label=(\alph*)]
+    \setcounter{enumi}{1}
+    \item \textbf{Contrapositive:} If I am not rich, then I am not smart.
+    
+    \item \textbf{Contrapositive:} If $x \neq 0$ and $x \neq 1$, then $x^2 \neq x$.
+    
+    (Or equivalently: If it is not the case that $x = 0$ or $x = 1$, then $x^2 \neq x$.)
+\end{enumerate}
+\end{proof}
+
+\setcounter{problem}{11}
+\begin{problem}
+Find counterexamples to the following assertions.
+
+\begin{enumerate}[label=(\alph*)]
+    \item $2^n - 1$ is prime for every $n > 2$.
+    
+    \item $2^n + 3^n$ is prime for all $n \in \NN$.
+    
+    \item $2^n + n$ is prime for every positive odd integer $n$.
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \item $n = 4$: $2^4 - 1 = 15 = 3 \times 5$ is composite.
+
+    \item $n = 3$: $2^3 + 3^3 = 8 + 27 = 35 = 5 \times 7$ is composite.
+
+    \item $n = 7$: $2^7 + 7 = 128 + 7 = 135 = 5 \times 27$ is composite.
+\end{enumerate}
+\end{proof}
+
+\setcounter{problem}{13}
+\begin{problem}
+Let $S$ be a nonempty set. Determine which of the following assertions are true. For the true ones, give a reason. For the false ones, provide a counterexample.
+
+\begin{enumerate}[label=(\alph*)]
+    \item $A \cup B = B \cup A$ for all $A, B \in \mathcal{P}(S)$.
+    
+    \item $(A \setminus B) \cup B = A$ for all $A, B \in \mathcal{P}(S)$.
+    
+    \item $(A \cup B) \setminus A = B$ for all $A, B \in \mathcal{P}(S)$.
+    
+    \item $(A \cap B) \cap C = A \cap (B \cap C)$ for all $A, B, C \in \mathcal{P}(S)$.
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \item TRUE. Union is commutative.
+
+    \item FALSE. Let $A = \{1, 2\}$ and $B = \{2, 3\}$. Then $(A \setminus B) \cup B = \{1\} \cup \{2, 3\} = \{1, 2, 3\} \neq A$.
+
+    \item FALSE. Let $A = \{1, 2\}$ and $B = \{2, 3\}$. Then $(A \cup B) \setminus A = \{1, 2, 3\} \setminus \{1, 2\} = \{3\} \neq B$.
+
+    \item TRUE. Intersection is associative.
+\end{enumerate}
+\end{proof}
+
+\section*{Section 2.2}
+
+\setcounter{problem}{1}
+\begin{problem}
+Let $p$, $q$, and $r$ be as in Exercise 1. Translate the following into English sentences.
+
+\begin{enumerate}[label=(\alph*)]
+    \item $(p \land q) \to r$
+    
+    \item $(p \to r) \to q$
+    
+    \item $\neg p \leftrightarrow (q \lor r)$
+    
+    \item $\neg(p \to (q \lor r))$
+    
+    \item $\neg(p \lor q) \land r$
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+
+Recall: $p = $ "it is raining," $q = $ "the sun is shining," $r = $ "there are clouds in the sky."
+
+\begin{enumerate}[label=(\alph*)]
+    \item "If it is raining and the sun is shining, then there are clouds in the sky."
+
+    \item "If (it raining implies there are clouds in the sky), then the sun is shining."
+
+    \item "It is not raining if and only if (the sun is shining or there are clouds in the sky)."
+
+    \item "It is not the case that (if it is raining then the sun is shining or there are clouds in the sky)."
+
+    \item "It is not raining and the sun is not shining, and there are clouds in the sky."
+\end{enumerate}
+\end{proof}
+
+\setcounter{problem}{2}
+\begin{problem}
+Consider the following propositions:
+
+$p \to q$, $p \land \neg q$, $\neg p \to q$, $\neg p \lor q$, $q \to p$, $\neg q \lor p$, $\neg q \to \neg p$, $p \land \neg q$.
+
+\begin{enumerate}[label=(\alph*)]
+    \item Which proposition is the converse of $p \to q$?
+    
+    \item Which proposition is the contrapositive of $p \to q$?
+    
+    \item Which propositions are logically equivalent to $p \to q$?
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \item $q \to p$
+
+    \item $\neg q \to \neg p$
+
+    \item $\neg p \lor q$ and $\neg q \to \neg p$
+\end{enumerate}
+\end{proof}
+
+\setcounter{problem}{10}
+\begin{problem}
+Construct truth tables for
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\neg(p \lor q) \to r$
+    
+    \item $\neg((p \lor q) \to r)$
+\end{enumerate}
+
+This exercise shows that one must be careful with parentheses.
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \item Truth table for $\neg(p \lor q) \to r$:
+    
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$p$ & $q$ & $r$ & $p \lor q$ & $\neg(p \lor q)$ & $\neg(p \lor q) \to r$ \\
+\hline
+T & T & T & T & F & T \\
+T & T & F & T & F & T \\
+T & F & T & T & F & T \\
+T & F & F & T & F & T \\
+F & T & T & T & F & T \\
+F & T & F & T & F & T \\
+F & F & T & F & T & T \\
+F & F & F & F & T & F \\
+\hline
+\end{tabular}
+\end{center}
+
+    \item Truth table for $\neg((p \lor q) \to r)$:
+    
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$p$ & $q$ & $r$ & $p \lor q$ & $(p \lor q) \to r$ & $\neg((p \lor q) \to r)$ \\
+\hline
+T & T & T & T & T & F \\
+T & T & F & T & F & T \\
+T & F & T & T & T & F \\
+T & F & F & T & F & T \\
+F & T & T & T & T & F \\
+F & T & F & T & F & T \\
+F & F & T & F & T & F \\
+F & F & F & F & T & F \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{enumerate}
+\end{proof}
+
+\setcounter{problem}{11}
+\begin{problem}
+In which of the following statements is the "or" an "inclusive or"?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Choice of soup or salad.
+    
+    \item To enter the university, a student must have taken a year of chemistry or physics in high school.
+    
+    \item Publish or perish.
+    
+    \item Experience with C++ or Java is desirable.
+    
+    \item The task will be completed on Thursday or Friday.
+    
+    \item Discounts are available to persons under 20 or over 60.
+    
+    \item No fishing or hunting allowed.
+    
+    \item The school will not be open in July or August.
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \item Exclusive. You don't get both.
+
+    \item Inclusive. Taking both satisfies the requirement.
+
+    \item Inclusive. You can both publish and not perish.
+
+    \item Inclusive. Having both is better.
+
+    \item Inclusive. The task could span both days.
+
+    \item Inclusive (though impossible to satisfy both).
+
+    \item Inclusive. Both are prohibited.
+
+    \item Inclusive. Closed both months.
+\end{enumerate}
+\end{proof}
+
+\setcounter{problem}{22}
+\begin{problem}
+Prove or disprove the following. Don't forget that only one line of the truth table is needed to show that a proposition is not a tautology.
+
+\begin{enumerate}[label=(\alph*)]
+    \setcounter{enumi}{3}
+    \item $(q \to p) \Rightarrow (p \land q)$
+    
+    \item $(p \land \neg q) \Rightarrow (p \to q)$
+    
+    \item $(p \land q) \Rightarrow (p \lor q)$
+\end{enumerate}
+
+Note: $A \Rightarrow B$ means "$A$ implies $B$" or equivalently "$A \to B$ is a tautology."
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \setcounter{enumi}{3}
+    \item FALSE. Let $p = T$ and $q = F$. Then $q \to p$ is true but $p \land q$ is false.
+
+    \item FALSE. Let $p = T$ and $q = F$. Then $p \land \neg q$ is true but $p \to q$ is false.
+
+    \item TRUE. If $p \land q$ is true, then both $p$ and $q$ are true, so $p \lor q$ is true.
+\end{enumerate}
+\end{proof}
+
+\setcounter{problem}{22}
+\begin{problem}
+A logician told her son "If you don't finish your dinner, you will not get to stay up and watch TV." He finished his dinner and then was sent straight to bed. Discuss.
+\end{problem}
+
+\begin{proof}[Solution]
+Let $p = $ "finish dinner" and $q = $ "watch TV." The mother said $\neg p \to \neg q$, which is equivalent to $q \to p$. The son incorrectly interpreted this as $p \to q$. The mother's statement only guarantees what happens if he doesn't finish dinner - it says nothing about what happens if he does. The converse is not implied, so the son confused the statement with its converse.
+\end{proof}
+
+\setcounter{problem}{23}
+\begin{problem}
+Consider the statement "Concrete does not grow if you do not water it."
+
+\begin{enumerate}[label=(\alph*)]
+    \item Give the contrapositive.
+    
+    \item Give the converse.
+    
+    \item Give the converse of the contrapositive.
+    
+    \item Which among the original statement and the ones in parts (a), (b), and (c) are true?
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+
+Let $p = $ "water concrete" and $q = $ "concrete grows."
+
+Original: $\neg p \to \neg q$
+
+\begin{enumerate}[label=(\alph*)]
+    \item Contrapositive: $q \to p$ ("If concrete grows, then you watered it")
+
+    \item Converse: $\neg q \to \neg p$ ("If concrete doesn't grow, then you didn't water it")
+
+    \item Converse of contrapositive: $p \to q$ ("If you water concrete, then it grows")
+
+    \item Original and contrapositive are TRUE (concrete never grows regardless, so the conclusion is always true). Converse and converse of contrapositive are FALSE (you can water concrete and it still doesn't grow).
+\end{enumerate}
+\end{proof}
+
+\section*{Other Exercises}
+
+For the following statements: (i) translate into symbols, (ii) write the negation in words, (iii) write the contrapositive in words.
+
+\vspace{0.3in}
+
+\setcounter{problem}{0}
+\begin{problem}
+For all functions $f: S \to T$, if $f: S \to T$ is onto, then for all $s \in S$ there exists a $t \in T$ such that $f(s) = t$.
+\end{problem}
+
+\begin{proof}[Solution]
+~
+
+(i) $\forall f: [\text{onto}(f) \to \forall s \in S \, \exists t \in T: f(s) = t]$
+
+(ii) "There exists a function $f: S \to T$ such that $f$ is onto and there exists $s \in S$ with $f(s) \neq t$ for all $t \in T$."
+
+(iii) "For all functions $f: S \to T$, if there exists $s \in S$ that is not mapped to any $t \in T$, then $f$ is not onto."
+\end{proof}
+
+\setcounter{problem}{1}
+\begin{problem}
+For all graphs $G$, if $G$ is finite and connected, then $G$ has a spanning tree.
+\end{problem}
+
+\begin{proof}[Solution]
+~
+
+(i) $\forall G: [(\text{finite}(G) \land \text{connected}(G)) \to \text{hasSpanningTree}(G)]$
+
+(ii) "There exists a graph $G$ such that $G$ is finite and connected, but $G$ does not have a spanning tree."
+
+(iii) "For all graphs $G$, if $G$ does not have a spanning tree, then $G$ is infinite or disconnected."
+\end{proof}
+
+\setcounter{problem}{2}
+\begin{problem}
+If $G$ is a finite connected graph and every vertex has even degree, then $G$ is Eulerian.
+\end{problem}
+
+\begin{proof}[Solution]
+~
+
+(i) $\forall G: [(\text{finite}(G) \land \text{connected}(G) \land \forall v \in V(G): \text{deg}(v) \text{ is even}) \to \text{Eulerian}(G)]$
+
+(ii) "There exists a graph $G$ such that $G$ is finite and connected and every vertex has even degree, but $G$ is not Eulerian."
+
+(iii) "If a graph is not Eulerian, then it is infinite, disconnected, or has a vertex of odd degree."
+\end{proof}
+
+\setcounter{problem}{3}
+\begin{problem}
+For all graphs $G$ with no loops or parallel edges, if $|V(G)| = n \geq 3$ and $\deg(v) \geq n/2$ for each vertex of $G$, then $G$ is Hamiltonian.
+
+(Note the domain here is \{graphs with no loops or parallel edges\}.)
+\end{problem}
+
+\begin{proof}[Solution]
+~
+
+(i) $\forall G: [(|V(G)| = n \geq 3 \land \forall v \in V(G): \deg(v) \geq n/2) \to \text{Hamiltonian}(G)]$
+
+(ii) "There exists a graph $G$ with no loops or parallel edges such that $|V(G)| \geq 3$ and every vertex has degree at least $n/2$, but $G$ is not Hamiltonian."
+
+(iii) "For all simple graphs $G$, if $G$ is not Hamiltonian, then either $|V(G)| < 3$ or some vertex has degree less than $n/2$."
+\end{proof}
+
+\end{document}
