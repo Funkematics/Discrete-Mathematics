@@ -46,7 +46,7 @@ theorem subsetcap3 (h : s ⊆ t) : s ∩ u ⊆ t ∩ u := by
   exact ⟨h xsu.1, xsu.2⟩ 
 
 theorem subsetcap4 (h : s ⊆ t) : s ∩ u ⊆ t ∩ u :=
-  fun ⟨xs, xu⟩ ↦ ⟨h xs, xu⟩
+  fun x ⟨xs, xu⟩ ↦ ⟨h xs, xu⟩
 
 
 theorem subsetcup (h : s ⊆ t) : s ∪ u ⊆ t ∪ u := by
