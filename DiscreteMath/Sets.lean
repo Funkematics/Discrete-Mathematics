@@ -126,3 +126,15 @@ theorem compl.subset.compl.of.subset {A B : Set U} (h1 : A ⊆ B) : Bᶜ ⊆ A�
   have h3 : x ∈ B := h1 h
   exact h2 h3
 
+theorem compl.compl (A : Set U) : Aᶜᶜ = A := by
+  apply Subset.antisymm
+  · intro x h1
+    rw [mem.compl.iff] at h1
+    rw [mem.compl.iff] at h1
+    push_neg at h1
+    exact h1
+  · intro x h1
+    rw [mem.compl.iff]
+    rw [mem.compl.iff]
+    push_neg
+    exact h1
