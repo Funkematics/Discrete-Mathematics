@@ -138,3 +138,14 @@ theorem compl.compl (A : Set U) : Aᶜᶜ = A := by
     rw [mem.compl.iff]
     push_neg
     exact h1
+
+example (A B : Set U) : A ⊆ B ↔ Bᶜ ⊆ Aᶜ := by
+  apply Iff.intro
+  · intro h1
+    exact compl.subset.compl.of.subset h1
+  · intro h1
+    apply compl.subset.compl.of.subset at h1
+    rw [compl.compl] at h1
+    rw [compl.compl] at h1
+    exact h1
+
