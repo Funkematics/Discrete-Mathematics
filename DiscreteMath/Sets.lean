@@ -14,7 +14,7 @@ variable {α : Type*} [DecidableEq α] (a : α) (s t : Finset α)
 
 end
 
---The function finds cardinalty of a subset defined by divisibility by k of a larger integer subset of range n to k, ie it finds the number of elements divisibly by k in range [n,k]--
+-- Finds cardinality of elements divisible by k in range [m,n]
 
 def mul_inbetween (n m k : ℤ) : ℤ :=
   ⌊n/k⌋ - ⌊(m-1)/k⌋ 
@@ -45,8 +45,8 @@ theorem subsetcap3 (h : s ⊆ t) : s ∩ u ⊆ t ∩ u := by
   intro x xsu
   exact ⟨h xsu.1, xsu.2⟩ 
 
-theorem subsetcap4 (h : s ⊆ t) : s ∩ u ⊆ t ∩ u := 
-  fun x ⟨xs, xu⟩ ↦ ⟨h xs, xu⟩
+theorem subsetcap4 (h : s ⊆ t) : s ∩ u ⊆ t ∩ u :=
+  fun ⟨xs, xu⟩ ↦ ⟨h xs, xu⟩
 
 
 theorem subsetcup (h : s ⊆ t) : s ∪ u ⊆ t ∪ u := by
@@ -80,13 +80,11 @@ example : s ∩ (t ∪ u) ⊆ s ∩ t ∪ s ∩ u := by
     exact ⟨xs, xu⟩ 
 
 theorem rev_examp : s ∩ t ∪ s ∩ u ⊆ s ∩ (t ∪ u) := by
-  simp only [subset_def]
-  intro x hx 
-  rw [inter_def, inter_def, union_def] at hx
-  rcases hx with h1 | h2
-    | inl => _
-    | inr => _
-    sorry
+  intro x hx
+  rcases hx with ⟨xs, xt⟩ | ⟨xs, xu⟩ 
+  · exact ⟨ xs, Or.inl xt⟩
+  · exact ⟨ xs, Or.inr xu⟩ 
+
 
 theorem trans1 (x : U) (A B C : Set U) (h1 : A ⊆ B) (h2 : B ⊆ C) (h3 : x ∈ A) : x ∈ C := by
  have h4 : x ∈ B := h1 h3   --Proof that x ∈ B
@@ -109,6 +107,22 @@ theorem subset.trans {A B C : Set U} (h1 : A ⊆ B) (h2 : B ⊆ C) : A ⊆ C := 
   have h3 : x ∈ B := h1 h
   exact h2 h3
 
+--Facts involving compliments below, adapted from Set Theory game
 
 
+example {A B : Set U} {x : U} (h1 : x ∈ A) (h2 : x ∉ B) : ¬A ⊆ B := by
+  intro h3                            --Suppose A ⊆ B, x ∈ A and x ∉ B
+  have h4 : x ∈ B := h3 h1            --Then x ∈ B from x ∈ A
+  exact h2 h4                         --Leads to contradiction since have x ∈ B and x ∉ B
+
+theorem mem.compl.iff (A : Set U) (x : U) : x ∈ Aᶜ ↔ x ∉ A := by
+    rfl       --demonstration that x ∈ Aᶜ and x ∉ A are equivalent
+
+theorem compl.subset.compl.of.subset {A B : Set U} (h1 : A ⊆ B) : Bᶜ ⊆ Aᶜ := by
+  intro x h2
+  rw [mem.compl.iff A x]
+  rw [mem.compl.iff B x] at h2
+  by_contra h
+  have h3 : x ∈ B := h1 h
+  exact h2 h3
 
