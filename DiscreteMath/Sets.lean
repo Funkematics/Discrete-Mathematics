@@ -175,6 +175,39 @@ theorem inter.subset.swap (A B : Set U) : A ∩ B ⊆ B ∩ A := by
   rw [mem_inter_iff] at h
   exact ⟨h.right, h.left⟩ 
 
+theorem inter.comm (A B : Set U) : A ∩ B = B ∩ A := by
+  apply Subset.antisymm
+  · intro x h1
+    apply inter.subset.swap at h1
+    exact h1
+  · intro x h1
+    apply inter.subset.swap at h1
+    exact h1
+
+theorem inter.assoc (A B C : Set U) : (A ∩ B) ∩ C = A ∩ (B ∩ C) := by
+  ext x                   --Principle of extensionality
+  apply Iff.intro 
+  · intro h
+    rw [mem_inter_iff, mem_inter_iff]
+    rw [mem_inter_iff, mem_inter_iff] at h
+    have hab : x ∈ A ∧ x ∈ B := h.left
+    have ha : x ∈ A := hab.left
+    have hb : x ∈ B := hab.right
+    have hc : x ∈ C := h.right
+    exact ⟨ ha,⟨hb, hc⟩ ⟩
+  · intro h
+    rw [mem_inter_iff, mem_inter_iff]
+    rw [mem_inter_iff, mem_inter_iff] at h
+    have ha : x ∈ A := h.left
+    have hbc : x ∈ B ∧ x ∈ C := h.right
+    have hb : x ∈ B := hbc.left
+    have hc : x ∈ C := hbc.right
+    exact ⟨ ⟨ha, hb⟩, hc⟩ 
+
+
+
+
+
 
 
 
