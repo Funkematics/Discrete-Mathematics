@@ -149,3 +149,35 @@ example (A B : Set U) : A ⊆ B ↔ Bᶜ ⊆ Aᶜ := by
     rw [compl.compl] at h1
     exact h1
 
+--Intersections
+
+example (x : U) (A B : Set U) (h : x ∈ A ∩ B) : x ∈ B := by
+  rw [mem_inter_iff] at h
+  exact h.right
+
+example (A B : Set U) : A ∩ B ⊆ A := by
+  intro x h
+  rw [mem_inter_iff] at h
+  exact h.left
+
+example {x : U} (A B : Set U) (h1 : x ∈ A) (h2 : x ∈ B) : x ∈ A ∩ B := by
+  exact ⟨h1, h2⟩ --shortcut exact And.intro h1 h2 works too
+
+example (A B C : Set U) (h1 : A ⊆ B) (h2 : A ⊆ C) : A ⊆ B ∩ C := by
+  intro x h
+  have h3 : x ∈ B := h1 h
+  have h4 : x ∈ C := h2 h
+  exact ⟨h3, h4⟩ 
+
+theorem inter.subset.swap (A B : Set U) : A ∩ B ⊆ B ∩ A := by
+  intro x h
+  rw [mem_inter_iff]
+  rw [mem_inter_iff] at h
+  exact ⟨h.right, h.left⟩ 
+
+
+
+
+
+
+
