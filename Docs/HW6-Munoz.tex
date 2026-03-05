@@ -1,0 +1,575 @@
+% <-- a percent symbol indicates a comment which does not affect the output of LaTeX
+% you can leave the preamble alone, from here ...
+\documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{tikz}
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+\usepackage{enumitem,palatino}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=red,urlcolor=blue]{hyperref}
+
+\newtheorem{problem}{Problem}
+\newtheorem*{theorem}{Theorem}
+% ... to here
+
+% shortcuts for blackboard bold number sets (reals, integers, etc.)
+\newcommand{\II}{\ensuremath{\mathbb I}}
+\newcommand{\NN}{\ensuremath{\mathbb N}}
+\newcommand{\QQ}{\ensuremath{\mathbb Q}}
+\newcommand{\RR}{\ensuremath{\mathbb R}}
+\newcommand{\ZZ}{\ensuremath{\mathbb Z}}
+\newcommand{\PP}{\ensuremath{\mathbb{P}}}
+
+\newcommand{\eps}{\ensuremath{\epsilon}}
+\newcommand{\ds}{\displaystyle}
+
+% feel free to add more shortcuts here
+
+
+\begin{document}
+% replace with your name, but otherwise leave this header alone, from here ...
+\small
+\noindent \textsc{Math F307: Homework Assignment 6} \hfill Christopher Munoz
+
+\normalsize
+\bigskip
+% ... to here
+
+\section*{Section 4.1}
+\setcounter{problem}{9}
+\begin{problem}
+Show that the following are loop invariants for the loop
+\begin{lstlisting}[mathescape=true]
+while 1 $\leq$ m do
+    m := 2m
+    n := 3n
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item $n^2 \geq m^3$
+    
+    \item $2m^6 < n^4$
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \item 
+    
+    \begin{theorem}
+    $n^2 \geq m^3$ is a loop invariant for the given loop.
+    \end{theorem}
+    
+    \begin{proof}
+    We have the loop condition $1 \leq m$, and a loop body  that replaces $m$ with $2m$ and $n$ with $3n$.
+    
+    Suppose $n^2 \geq m^3$ is true before the first iteration. After the first interation we have $m' = 2m$ and $n' = 3n$.
+    
+    We want to show $(n')^2 \geq (m')^3$, i.e., $(3n)^2 \geq (2m)^3$.
+    
+    Observe that $(3n)^2 = 9n^2$ and $(2m)^3 = 8m^3$.
+    
+    Since $n^2 \geq m^3$ (by assumption), we have $9n^2 \geq 9m^3 \geq 8m^3$ (as $9 > 8$).
+    
+    Therefore $(3n)^2 \geq (2m)^3$, so the invariant is preserved.
+    
+    Thus $n^2 \geq m^3$ is a loop invariant (assuming it holds initially).
+    \end{proof}
+    
+    \item 
+    
+    \begin{theorem}
+    $2m^6 < n^4$ is a loop invariant for the given loop.
+    \end{theorem}
+    
+    \begin{proof}
+    Suppose $2m^6 < n^4$ holds before an iteration. After the iteration, $m' = 2m$ and $n' = 3n$.
+    
+    We want to show $2(m')^6 < (n')^4$, i.e., $2(2m)^6 < (3n)^4$.
+    
+    $2(2m)^6 = 2 \cdot 64m^6 = 128m^6$ and $(3n)^4 = 81n^4$.
+    
+    Since $2m^6 < n^4$ (by assumption), we have $128m^6 = 64 \cdot 2m^6 < 64n^4 < 81n^4$ (as $64 < 81$).
+    
+    Therefore $2(2m)^6 < (3n)^4$, so the invariant is preserved.
+    
+    Thus $2m^6 < n^4$ is a loop invariant (assuming it holds initially).
+    \end{proof}
+\end{enumerate}
+\renewcommand{\qedsymbol}{}
+\end{proof}
+
+
+\setcounter{problem}{11}
+\begin{problem}
+Consider the loop
+\begin{lstlisting}[mathescape=true]
+while k $\geq$ 1 do
+    k := 2k
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Is $k^2 \equiv 1 \pmod{3}$ a loop invariant? Explain.
+    
+    \item Is $k^2 \equiv 1 \pmod{4}$ a loop invariant? Explain.
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \item Yes, $k^2 \equiv 1 \pmod{3}$ is a loop invariant (if it holds initially).
+    
+    Suppose $k^2 \equiv 1 \pmod{3}$ before an iteration. After the iteration, $k' = 2k$.
+    
+    Then $(k')^2 = (2k)^2 = 4k^2$.
+    
+    Since $k^2 \equiv 1 \pmod{3}$, we have $4k^2 \equiv 4 \cdot 1 = 4 \equiv 1 \pmod{3}$.
+    
+    So the property is preserved through iterations. If it holds initially, it remains true throughout the loop.
+    
+    \item No, $k^2 \equiv 1 \pmod{4}$ is not a loop invariant.
+    
+    Suppose $k^2 \equiv 1 \pmod{4}$ before an iteration. This means $k$ is odd (since only odd numbers squared give $1 \pmod{4}$).
+    
+    After the iteration, $k' = 2k$.
+    
+    Then $(k')^2 = (2k)^2 = 4k^2 \equiv 0 \pmod{4}$.
+    
+    So if $k^2 \equiv 1 \pmod{4}$ before the iteration, then $(k')^2 \equiv 0 \pmod{4}$ after the iteration, which means $(k')^2 \not\equiv 1 \pmod{4}$.
+    
+    The property is not preserved, so it is not a loop invariant.
+\end{enumerate}
+\end{proof}
+\newpage
+\section*{Section 4.2}
+
+\setcounter{problem}{3}
+\begin{problem}
+\begin{enumerate}[label=(\alph*)]
+    \item Show that $n^3 - n$ is a multiple of 6 for all $n \in \PP$.
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+
+We prove this by induction on $n$.
+
+\textbf{Base case:} $n = 1$. Then $1^3 - 1 = 0 = 6 \cdot 0$, which is a multiple of 6.
+
+\textbf{Inductive step:} Assume $k^3 - k = 6m$ for some integer $m$ (inductive hypothesis).
+
+We need to show $(k+1)^3 - (k+1)$ is a multiple of 6.
+
+\begin{align*}
+(k+1)^3 - (k+1) &= k^3 + 3k^2 + 3k + 1 - k - 1 \\
+&= k^3 - k + 3k^2 + 3k \\
+&= 6m + 3k^2 + 3k \quad \text{(by inductive hypothesis)} \\
+&= 6m + 3k(k + 1)
+\end{align*}
+
+Since $k$ and $k+1$ are consecutive integers, one must be even, so $k(k+1)$ is even. Thus $k(k+1) = 2j$ for some integer $j$.
+
+Therefore $3k(k+1) = 3 \cdot 2j = 6j$, which is a multiple of 6.
+
+Hence $(k+1)^3 - (k+1) = 6m + 6j = 6(m + j)$ is a multiple of 6.
+
+By mathematical induction, $n^3 - n$ is a multiple of 6 for all $n \in \PP$.
+\end{proof}
+
+
+\setcounter{problem}{5}
+\begin{problem}
+Prove
+$$4 + 10 + 16 + \cdots + (6n - 2) = n(3n + 1) \text{ for all } n \in \PP.$$
+\end{problem}
+
+\begin{proof}[Solution]
+~
+
+We prove this by induction on $n$.
+
+\textbf{Base case:} $n = 1$. LHS $= 6(1) - 2 = 4$ and RHS $= 1(3 \cdot 1 + 1) = 4$. Thus the formula holds for $n = 1$.
+
+\textbf{Inductive step:} Assume 
+$$4 + 10 + 16 + \cdots + (6k - 2) = k(3k + 1)$$
+for some $k \in \PP$ (inductive hypothesis).
+
+We need to show $4 + 10 + 16 + \cdots + (6k - 2) + (6(k+1) - 2) = (k+1)(3(k+1) + 1)$.
+
+\begin{align*}
+\text{LHS} &= [4 + 10 + 16 + \cdots + (6k - 2)] + (6(k+1) - 2) \\
+&= k(3k + 1) + 6k + 6 - 2 \quad \text{(by inductive hypothesis)} \\
+&= 3k^2 + k + 6k + 4 \\
+&= 3k^2 + 7k + 4 \\
+&= 3k^2 + 3k + 4k + 4 \\
+&= 3k(k + 1) + 4(k + 1) \\
+&= (k + 1)(3k + 4) \\
+&= (k + 1)(3(k+1) + 1) = \text{RHS}
+\end{align*}
+
+By mathematical induction, the formula holds for all $n \in \PP$.
+\end{proof}
+
+
+\setcounter{problem}{7}
+\begin{problem}
+Prove
+$$\frac{1}{1 \cdot 5} + \frac{1}{5 \cdot 9} + \frac{1}{9 \cdot 13} + \cdots + \frac{1}{(4n - 3)(4n + 1)} = \frac{n}{4n + 1} \text{ for } n \in \PP.$$
+\end{problem}
+
+\begin{proof}[Solution]
+~
+
+We prove this by induction on $n$.
+
+\textbf{Base case:} $n = 1$. LHS $= \frac{1}{1 \cdot 5} = \frac{1}{5}$ and RHS $= \frac{1}{4(1) + 1} = \frac{1}{5}$. The formula holds for $n = 1$.
+
+\textbf{Inductive step:} Assume 
+$$\sum_{i=1}^{k} \frac{1}{(4i - 3)(4i + 1)} = \frac{k}{4k + 1}$$
+for some $k \in \PP$ (inductive hypothesis).
+
+We need to show the sum to $k+1$ equals $\frac{k+1}{4(k+1) + 1} = \frac{k+1}{4k + 5}$.
+
+\begin{align*}
+\text{LHS} &= \frac{k}{4k + 1} + \frac{1}{(4(k+1) - 3)(4(k+1) + 1)} \\
+&= \frac{k}{4k + 1} + \frac{1}{(4k + 1)(4k + 5)} \\
+&= \frac{k(4k + 5) + 1}{(4k + 1)(4k + 5)} \\
+&= \frac{4k^2 + 5k + 1}{(4k + 1)(4k + 5)} \\
+&= \frac{(4k + 1)(k + 1)}{(4k + 1)(4k + 5)} \\
+&= \frac{k + 1}{4k + 5} = \text{RHS}
+\end{align*}
+
+By mathematical induction, the formula holds for all $n \in \PP$.
+\end{proof}
+
+
+\setcounter{problem}{19}
+\begin{problem}
+Prove $1^3 + 2^3 + \cdots + n^3 = (1 + 2 + \cdots + n)^2$, i.e.,
+$$\sum_{i=1}^{n} i^3 = \left(\sum_{i=1}^{n} i\right)^2 \text{ for all } n \in \PP.$$
+Hint: Use the identity in Example 2(b).
+\end{problem}
+
+\begin{proof}[Solution]
+~
+
+From Example 2(b), we have $\sum_{i=1}^{n} i = \frac{n(n+1)}{2}$.
+
+We prove the given formula by induction on $n$.
+
+\textbf{Base case:} $n = 1$. LHS $= 1^3 = 1$ and RHS $= 1^2 = 1$. The formula holds for $n = 1$.
+
+\textbf{Inductive step:} Assume 
+$$\sum_{i=1}^{k} i^3 = \left(\sum_{i=1}^{k} i\right)^2 = \left[\frac{k(k+1)}{2}\right]^2$$
+for some $k \in \PP$ (inductive hypothesis).
+
+We need to show $\sum_{i=1}^{k+1} i^3 = \left[\frac{(k+1)(k+2)}{2}\right]^2$.
+
+\begin{align*}
+\sum_{i=1}^{k+1} i^3 &= \sum_{i=1}^{k} i^3 + (k+1)^3 \\
+&= \left[\frac{k(k+1)}{2}\right]^2 + (k+1)^3 \quad \text{(by inductive hypothesis)} \\
+&= \frac{k^2(k+1)^2}{4} + (k+1)^3 \\
+&= (k+1)^2 \left[\frac{k^2}{4} + (k+1)\right] \\
+&= (k+1)^2 \left[\frac{k^2 + 4k + 4}{4}\right] \\
+&= (k+1)^2 \cdot \frac{(k+2)^2}{4} \\
+&= \left[\frac{(k+1)(k+2)}{2}\right]^2 = \text{RHS}
+\end{align*}
+
+By mathematical induction, the formula holds for all $n \in \PP$.
+\end{proof}
+\newpage
+\section*{Section 4.4}
+
+\setcounter{problem}{7}
+\begin{problem}
+Let $\Sigma = \{a, b\}$ and let $s_n$ denote the number of words of length $n$ that do not contain the string $ab$.
+
+\begin{enumerate}[label=(\alph*)]
+    \item Calculate $s_0$, $s_1$, $s_2$, and $s_3$.
+    
+    \item Find a formula for $s_n$ and prove it is correct.
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \item 
+    
+    $s_0 = 1$: The empty word (length 0) does not contain ``ab''.
+    
+    $s_1 = 2$: Words of length 1 are ``a'' and ``b''. Neither contains ``ab''.
+    
+    $s_2 = 3$: Words of length 2 are ``aa'', ``ab'', ``ba'', ``bb''.
+    \begin{itemize}
+        \item ``aa'' - no ``ab'' (valid)
+        \item ``ab'' - contains ``ab'' (invalid)
+        \item ``ba'' - no ``ab'' (valid)
+        \item ``bb'' - no ``ab'' (valid)
+    \end{itemize}
+    Count: 3 valid words.
+    
+    $s_3 = 4$: Words of length 3:
+    \begin{itemize}
+        \item ``aaa'' - valid
+        \item ``aab'' - invalid (contains ``ab'')
+        \item ``aba'' - invalid (contains ``ab'')
+        \item ``abb'' - invalid (contains ``ab'')
+        \item ``baa'' - valid
+        \item ``bab'' - invalid (contains ``ab'')
+        \item ``bba'' - valid
+        \item ``bbb'' - valid
+    \end{itemize}
+    Count: 4 valid words.
+    
+    \item 
+    
+    \begin{theorem}
+    $s_n = n + 1$ for all $n \geq 0$.
+    \end{theorem}
+    
+    \begin{proof}
+    A word avoids the substring ``ab'' if and only if it has the form $b^i a^{n-i}$ for some $i \in \{0, 1, 2, \ldots, n\}$, i.e., zero or more $b$'s followed by zero or more $a$'s.
+    
+    For length $n$, the valid words are:
+    \begin{align*}
+    &a^n \quad \text{(0 $b$'s, $n$ $a$'s)} \\
+    &ba^{n-1} \quad \text{(1 $b$, $n-1$ $a$'s)} \\
+    &b^2a^{n-2} \quad \text{(2 $b$'s, $n-2$ $a$'s)} \\
+    &\vdots \\
+    &b^n \quad \text{($n$ $b$'s, 0 $a$'s)}
+    \end{align*}
+    
+    This gives exactly $n + 1$ distinct words.
+    
+    We verify by induction that these are precisely the words avoiding ``ab''.
+    
+    \textbf{Base case:} $n = 0$. The only word is the empty word, which matches $b^0a^0$ and avoids ``ab''. Thus $s_0 = 1 = 0 + 1$.
+    
+    \textbf{Inductive step:} Assume all words of length $k$ avoiding ``ab'' have the form $b^ia^{k-i}$ for $i \in \{0, 1, \ldots, k\}$.
+    
+    A word of length $k+1$ avoiding ``ab'' either:
+    \begin{itemize}
+        \item Ends in $b$: Must be of form $b^ia^{k-i}b$, which requires $k - i = 0$, giving $b^{k+1}$.
+        \item Ends in $a$: Can be $b^ia^{k-i}a = b^ia^{k+1-i}$ for any $i \in \{0, 1, \ldots, k\}$.
+    \end{itemize}
+    
+    This gives $b^{k+1}, b^ka^1, b^{k-1}a^2, \ldots, b^1a^k, a^{k+1}$, which is $k + 2 = (k+1) + 1$ words.
+    
+    Therefore $s_n = n + 1$ for all $n \geq 0$.
+    \renewcommand{\qedsymbol}{}
+    \end{proof}
+\end{enumerate}
+\end{proof}
+
+\newpage
+
+\setcounter{problem}{9}
+\begin{problem}
+Consider the sequence defined by
+\begin{itemize}
+    \item (B) $\text{SEQ}(0) = 1$, $\text{SEQ}(1) = 0$,
+    \item (R) $\text{SEQ}(n) = \text{SEQ}(n-2)$ for $n \geq 2$.
+\end{itemize}
+
+\begin{enumerate}[label=(\alph*)]
+    \item List the first few terms of this sequence.
+    
+    \item What is the set of values of this sequence?
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \item Using the recurrence relation $\text{SEQ}(n) = \text{SEQ}(n-2)$:
+    
+    \begin{align*}
+    \text{SEQ}(0) &= 1 \quad \text{(given)} \\
+    \text{SEQ}(1) &= 0 \quad \text{(given)} \\
+    \text{SEQ}(2) &= \text{SEQ}(0) = 1 \\
+    \text{SEQ}(3) &= \text{SEQ}(1) = 0 \\
+    \text{SEQ}(4) &= \text{SEQ}(2) = 1 \\
+    \text{SEQ}(5) &= \text{SEQ}(3) = 0 \\
+    \text{SEQ}(6) &= \text{SEQ}(4) = 1 \\
+    \text{SEQ}(7) &= \text{SEQ}(5) = 0
+    \end{align*}
+    
+    The sequence is: $1, 0, 1, 0, 1, 0, 1, 0, \ldots$
+    
+    \item The set of values is $\{0, 1\}$.
+    
+    From the recurrence relation, we see that:
+    \begin{itemize}
+        \item $\text{SEQ}(n) = 1$ for all even $n \geq 0$
+        \item $\text{SEQ}(n) = 0$ for all odd $n \geq 1$
+    \end{itemize}
+    
+    This is because $\text{SEQ}(n) = \text{SEQ}(n-2) = \text{SEQ}(n-4) = \cdots$ eventually reaches either $\text{SEQ}(0) = 1$ (if $n$ is even) or $\text{SEQ}(1) = 0$ (if $n$ is odd).
+    
+    Therefore, the only values that appear in the sequence are 0 and 1.
+\end{enumerate}
+\end{proof}
+\newpage
+\section*{Section 4.6}
+
+\setcounter{problem}{1}
+\begin{problem}
+For $n \in \PP$, prove
+$$\frac{1}{1 \cdot 2} + \frac{1}{2 \cdot 3} + \cdots + \frac{1}{n(n+1)} = \frac{n}{n+1}.$$
+\end{problem}
+
+\begin{proof}[Solution]
+~
+
+We prove this by induction on $n$.
+
+\textbf{Base case:} $n = 1$. LHS $= \frac{1}{1 \cdot 2} = \frac{1}{2}$ and RHS $= \frac{1}{1+1} = \frac{1}{2}$. The formula holds.
+
+\textbf{Inductive step:} Assume $\sum_{i=1}^{k} \frac{1}{i(i+1)} = \frac{k}{k+1}$ for some $k \in \PP$.
+
+We show the formula holds for $k+1$:
+
+\begin{align*}
+\sum_{i=1}^{k+1} \frac{1}{i(i+1)} &= \sum_{i=1}^{k} \frac{1}{i(i+1)} + \frac{1}{(k+1)(k+2)} \\
+&= \frac{k}{k+1} + \frac{1}{(k+1)(k+2)} \quad \text{(by inductive hypothesis)} \\
+&= \frac{k(k+2) + 1}{(k+1)(k+2)} \\
+&= \frac{k^2 + 2k + 1}{(k+1)(k+2)} \\
+&= \frac{(k+1)^2}{(k+1)(k+2)} \\
+&= \frac{k+1}{k+2}
+\end{align*}
+
+By mathematical induction, the formula holds for all $n \in \PP$.
+\end{proof}
+
+\newpage
+
+\setcounter{problem}{5}
+\begin{problem}
+Recursively define $a_0 = 1$, $a_1 = 2$, and $a_n = a_{n-1}$ for $n \geq 2$.
+
+\begin{enumerate}[label=(\alph*)]
+    \item Calculate the first few terms of the sequence.
+    
+    \item Using part (a), guess the general formula for $a_n$.
+    
+    \item Prove the guess in part (b).
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \item Using the recurrence $a_n = a_{n-1}$:
+    
+    \begin{align*}
+    a_0 &= 1 \\
+    a_1 &= 2 \\
+    a_2 &= a_1 = 2 \\
+    a_3 &= a_2 = 2 \\
+    a_4 &= a_3 = 2 \\
+    a_5 &= a_4 = 2
+    \end{align*}
+    
+    The sequence is: $1, 2, 2, 2, 2, 2, \ldots$
+    
+    \item Based on part (a), we guess:
+    $$a_n = \begin{cases} 1 & \text{if } n = 0 \\ 2 & \text{if } n \geq 1 \end{cases}$$
+    
+    \item We prove this formula by strong induction.
+    
+    \textbf{Base cases:} $a_0 = 1$ by definition. $a_1 = 2$ by definition. Both match the formula.
+    
+    \textbf{Inductive step:} Assume $a_k = 2$ for all $1 \leq k \leq n$ where $n \geq 1$.
+    
+    For $n + 1 \geq 2$:
+    $$a_{n+1} = a_n = 2 \quad \text{(by recurrence and inductive hypothesis)}$$
+    
+    Therefore $a_n = 2$ for all $n \geq 1$.
+    
+    By strong induction, the formula holds for all $n \geq 0$.
+\end{enumerate}
+\end{proof}
+
+\newpage
+
+\setcounter{problem}{11}
+\begin{problem}
+Recursively define $a_0 = 1$, $a_1 = 3$, $a_2 = 5$, and $a_n = 3a_{n-2} + 2a_{n-3}$ for $n \geq 3$.
+
+\begin{enumerate}[label=(\alph*)]
+    \item Calculate $a_n$ for $n = 3, 4, 5, 6, 7$.
+    
+    \item Prove that $a_n > 2^n$ for $n \geq 1$.
+    
+    \item Prove that $a_n < 2^{n+1}$ for $n \geq 1$.
+\end{enumerate}
+\end{problem}
+
+\begin{proof}[Solution]
+~
+\begin{enumerate}[label=(\alph*)]
+    \item Using the recurrence $a_n = 3a_{n-2} + 2a_{n-3}$:
+    
+    \begin{align*}
+    a_3 &= 3a_1 + 2a_0 = 3(3) + 2(1) = 9 + 2 = 11 \\
+    a_4 &= 3a_2 + 2a_1 = 3(5) + 2(3) = 15 + 6 = 21 \\
+    a_5 &= 3a_3 + 2a_2 = 3(11) + 2(5) = 33 + 10 = 43 \\
+    a_6 &= 3a_4 + 2a_3 = 3(21) + 2(11) = 63 + 22 = 85 \\
+    a_7 &= 3a_5 + 2a_4 = 3(43) + 2(21) = 129 + 42 = 171
+    \end{align*}
+    
+    \item We prove $a_n > 2^n$ for $n \geq 1$ by strong induction.
+    
+    \textbf{Base cases:}
+    \begin{align*}
+    a_1 = 3 > 2^1 = 2 \\
+    a_2 = 5 > 2^2 = 4 \\
+    a_3 = 11 > 2^3 = 8
+    \end{align*}
+    
+    \textbf{Inductive step:} Assume $a_k > 2^k$ for all $1 \leq k \leq n-1$ where $n \geq 3$.
+    
+    Then:
+    \begin{align*}
+    a_n &= 3a_{n-2} + 2a_{n-3} \\
+    &> 3 \cdot 2^{n-2} + 2 \cdot 2^{n-3} \quad \text{(by inductive hypothesis)} \\
+    &= 3 \cdot 2^{n-2} + 2^{n-2} \\
+    &= 4 \cdot 2^{n-2} \\
+    &= 2^2 \cdot 2^{n-2} \\
+    &= 2^n
+    \end{align*}
+    
+    By strong induction, $a_n > 2^n$ for all $n \geq 1$.
+    
+    \item We prove $a_n < 2^{n+1}$ for $n \geq 1$ by strong induction.
+    
+    \textbf{Base cases:}
+    \begin{align*}
+    a_1 = 3 < 2^2 = 4 \\
+    a_2 = 5 < 2^3 = 8 \\
+    a_3 = 11 < 2^4 = 16
+    \end{align*}
+    
+    \textbf{Inductive step:} Assume $a_k < 2^{k+1}$ for all $1 \leq k \leq n-1$ where $n \geq 3$.
+    
+    Then:
+    \begin{align*}
+    a_n &= 3a_{n-2} + 2a_{n-3} \\
+    &< 3 \cdot 2^{n-1} + 2 \cdot 2^{n-2} \quad \text{(by inductive hypothesis)} \\
+    &= 3 \cdot 2^{n-1} + 2^{n-1} \\
+    &= 4 \cdot 2^{n-1} \\
+    &= 2^2 \cdot 2^{n-1} \\
+    &= 2^{n+1}
+    \end{align*}
+    
+    By strong induction, $a_n < 2^{n+1}$ for all $n \geq 1$.
+\end{enumerate}
+\end{proof}
+
+\end{document}
