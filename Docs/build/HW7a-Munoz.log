@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024 Gentoo Linux) (preloaded format=pdflatex 2025.9.25)  23 MAR 2026 12:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024 Gentoo Linux) (preloaded format=pdflatex 2025.9.25)  23 MAR 2026 12:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**HW7-Munoz.tex
-(./HW7-Munoz.tex
+**HW7a-Munoz.tex
+(./HW7a-Munoz.tex
 LaTeX2e <2024-11-01>
 L3 programming layer <2024-11-02>
 (/usr/share/texmf-dist/tex/latex/base/article.cls
@@ -609,8 +609,8 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count329
 \l__pdf_internal_box=\box68
 )
-(build/HW7-Munoz.aux)
-\openout1 = `HW7-Munoz.aux'.
+(build/HW7a-Munoz.aux)
+\openout1 = `HW7a-Munoz.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
 LaTeX Font Info:    ... okay on input line 31.
@@ -689,9 +689,9 @@ e
 
 \c@lstlisting=\count336
 Package hyperref Info: Link coloring ON on input line 31.
-(build/HW7-Munoz.out) (build/HW7-Munoz.out)
+(build/HW7a-Munoz.out) (build/HW7a-Munoz.out)
 \@outlinefile=\write4
-\openout4 = `HW7-Munoz.out'.
+\openout4 = `HW7a-Munoz.out'.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 52.
 
@@ -835,22 +835,22 @@ it/12 m$ \OT1/ppl/m/n/12 com-po-nents be trees $\OML/cmm/m/it/12 T[]; T[]; [] ;
 
 
 
-[10] (build/HW7-Munoz.aux)
+[10] (build/HW7a-Munoz.aux)
  ***********
 LaTeX2e <2024-11-01>
 L3 programming layer <2024-11-02>
  ***********
-Package rerunfilecheck Info: File `HW7-Munoz.out' has not changed.
+Package rerunfilecheck Info: File `HW7a-Munoz.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
  22883 strings out of 475322
- 411744 string characters out of 5767664
- 823256 words of memory out of 5000000
+ 411763 string characters out of 5767664
+ 823258 words of memory out of 5000000
  45326 multiletter control sequences out of 15000+600000
  571177 words of font info for 71 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 102i,7n,107p,546b,951s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 102i,7n,107p,547b,951s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/font
 s/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/
@@ -859,7 +859,7 @@ amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 exmf-dist/fonts/type1/urw/palatino/uplbi8a.pfb></usr/share/texmf-dist/fonts/typ
 e1/urw/palatino/uplr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/palatino/uplr
 i8a.pfb>
-Output written on build/HW7-Munoz.pdf (10 pages, 250393 bytes).
+Output written on build/HW7a-Munoz.pdf (10 pages, 250393 bytes).
 PDF statistics:
  167 PDF objects out of 1000 (max. 8388607)
  119 compressed objects within 2 object streams

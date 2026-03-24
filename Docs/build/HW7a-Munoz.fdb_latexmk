@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1774298777.1281 "HW7-Munoz.tex" "build/HW7-Munoz.pdf" "HW7-Munoz" 1774298778.01398 0
+["pdflatex"] 1774298759.09239 "HW7a-Munoz.tex" "build/HW7a-Munoz.pdf" "HW7a-Munoz" 1774298759.91899 0
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/palatino/pplb7t.tfm" 1136768653 1616 371d1ee60c04b008c8fd760060cd34f1 ""
@@ -173,9 +173,9 @@
   "/usr/share/texmf-site/tex/latex/pgf/utilities/pgfrcs.sty" 1758841380.9771 325 f9f16d12354225b7dd52a3321f085955 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1758846987 5318290 3f0be5c5419f95449a735044e993c9ca ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1758846870.42717 1917600 903146e364dbcf08632fa0eafc3bb517 ""
-  "HW7-Munoz.tex" 1774298757.85865 25911 9835defa35f23612c391ef86d359e199 ""
-  "build/HW7-Munoz.aux" 1774298777.95883 163 62caa2a276925a140dfb5a09f5283243 "pdflatex"
-  "build/HW7-Munoz.out" 1774298777.39216 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "HW7a-Munoz.tex" 1774298757.85865 25911 9835defa35f23612c391ef86d359e199 ""
+  "build/HW7a-Munoz.aux" 1774298759.85867 163 62caa2a276925a140dfb5a09f5283243 "pdflatex"
+  "build/HW7a-Munoz.out" 1774298759.32866 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "figures61/figure8.png" 1774285840.23521 24010 6ea603d09916a02a435fe81ab335e521 ""
   "figures61/figure9.png" 1774285857.16873 15762 4fa9c2e1aa1515ae24f1dc18e6c375d1 ""
   "figures62/figure7.png" 1774292052.07012 34118 b82b95c4a4d6be76a962fd30faf1f5a6 ""
@@ -185,8 +185,8 @@
   "figures63/figure6.png" 1774292585.17889 16390 420b9cc210930daef3e32eb606269c47 ""
   "figures63/k33.png" 1774292777.22747 11283 5d6750169ccd01187b91ac4808a0aca7 ""
   (generated)
-  "build/HW7-Munoz.aux"
-  "build/HW7-Munoz.log"
-  "build/HW7-Munoz.out"
-  "build/HW7-Munoz.pdf"
+  "build/HW7a-Munoz.aux"
+  "build/HW7a-Munoz.log"
+  "build/HW7a-Munoz.out"
+  "build/HW7a-Munoz.pdf"
   (rewritten before read)
